@@ -1,0 +1,29 @@
+<div class="row justify-content-center">
+  <%= if @changeset.action do %>
+    <div class="col-12">
+      <div class="alert alert-danger text-center">
+        <p>
+          Oops, something went wrong! Please check the errors below.
+        </p>
+      </div>
+    </div>
+  <% end %>
+  <div class="col-12 col-md-6 align-self-center">
+    <div class="text-center">
+      <h1>New User</h1>
+
+      <%= form_for @changeset, Routes.user_path(@conn, :create), fn f ->  %>
+        <div class="mb-3">
+          <%= text_input f, :name, placeholder: "Name", class: "form-control" %>
+          <%= error_tag f, :name %>
+        </div>
+        <div class="mb-3">
+          <%= text_input f, :username, placeholder: "Username", class: "form-control" %>
+          <%= error_tag f, :username %>
+        </div>
+
+        <%= submit "Create User", class: "btn btn-primary btn-lg" %>
+      <% end %>
+    </div>
+  </div>
+</div>
