@@ -22,6 +22,11 @@
           <%= error_tag f, :username %>
         </div>
 
+        <div class="mb-3">
+          <%= password_input f, :password, placeholder: "Password", class: "form-control" %>
+          <%= error_tag f, :password %>
+        </div>
+
         <%= submit "Create User", class: "btn btn-primary btn-lg" %>
       <% end %>
     </div>
