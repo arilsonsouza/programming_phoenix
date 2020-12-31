@@ -12,10 +12,28 @@
     <header>
       <section class="container">
         <nav role="navigation">
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
+          <ul class="d-flex justify-content-between">
+            <%= if @current_user do %>
+              <li class="ml-3">
+                <%= @current_user.username %>
+              </li>
+              <li class="ml-3">
+                <%= link "Log out",
+                     to: Routes.session_path(@conn, :delete, @current_user),
+                     method: "delete" %>
+              </li>
+            <% else %>
+              <li>
+                <%= link "Register", to: Routes.user_path(@conn, :new) %>
+              </li>
+
+              <li class="ml-3">
+                <%= link "Log in", to: Routes.session_path(@conn, :new) %>
+              </li>
+            <% end %>
+            <li class="ml-3"><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
             <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
+              <li class="ml-3"><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
             <% end %>
           </ul>
         </nav>
